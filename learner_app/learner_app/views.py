@@ -9,9 +9,20 @@ def show_img(request):
 	
 @view_config(route_name='add_label', renderer='json')
 def save_label(request):
-	label = request.params['label']
-	path = request.params['path']
-	query = request.db.paths.find_one({ 'path' : path })
-	query['label'] = label
-	request.db.paths.save(query)
+	print request.method
+	if request.method == 'POST':
+		try:
+			label = request.params['label']
+			path = request.params['path']
+			try:
+				query = request.db.paths.find_one({ 'path' : path })
+				query['label'] = label
+				request.db.paths.save(query)
+				return HTTPFound(location='/')
+			except:
+				#db unavailable
+				return { 'error' : 'Database not available' }
+		except:
+			#Post data not valid
+			return HTTPFound(location='/')			
 	return HTTPFound(location='/')
