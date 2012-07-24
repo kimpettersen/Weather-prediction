@@ -1,1 +1,51 @@
 This is a small project I am working on to learn how to work with REST api and how to implement machine learning.
+
+Important steps of the project:
+*Manually label existing images taken from a web camera
+*Run different analysis on each image and register it in the database
+*Run the data through a learning algorithm
+*Make the data available through a REST api
+
+
+Project tree:
+├── Analyzer
+│   ├── Analyzer.py
+│   ├── __init__.py
+│   └── analysis
+│       ├── __init__.py
+│       ├── __init__.pyc
+│       ├── bw.py
+│       ├── bw.pyc
+│       ├── saturation.py
+│       └── saturation.pyc
+├── Exceptions
+│   └── __init__.py
+├── Preparation_scripts
+│   ├── __init__.py
+│   └── import_imgs.py
+├── README
+└── learner_app
+
+
+*Analyzer:
+Python package reponsible for running different analysis for the images already in the system.
+It contains a package called analysis where all the analysis are stored. To enable/disable an analysis
+you have to add/remove it from the enabled_analysis list in Analyzer.py
+
+*Exception:
+User defined exceptions
+
+*Preparation_scripts:
+Scripts to prepare the system for analysis, such as import existing images
+
+*learner_app:
+Pyramid application that are displying images and registering weather on an existing image. Used to manually 
+collect data to learn from.
+
+Built with:
+*Python
+*PIL
+*Pyramid
+*MongoDb
+*pymongo
+
